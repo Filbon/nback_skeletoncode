@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "mobappdev.example.nback_cimpl"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "mobappdev.example.nback_cimpl"
@@ -71,6 +71,7 @@ dependencies {
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.compose.animation:animation-android:1.7.5")
 
     testImplementation("junit:junit:4.13.2")
 

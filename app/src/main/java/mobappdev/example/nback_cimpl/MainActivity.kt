@@ -8,9 +8,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import mobappdev.example.nback_cimpl.ui.screens.GameScreen
 import mobappdev.example.nback_cimpl.ui.screens.HomeScreen
 import mobappdev.example.nback_cimpl.ui.theme.NBack_CImplTheme
 import mobappdev.example.nback_cimpl.ui.viewmodels.GameVM
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 /**
  * This is the MainActivity of the application
@@ -41,8 +45,18 @@ class MainActivity : ComponentActivity() {
                         factory = GameVM.Factory
                     )
 
-                    // Instantiate the homescreen
-                    HomeScreen(vm = gameViewModel)
+                    // Create a NavController for navigation
+                    val navController = rememberNavController()
+
+                    // Set up NavHost for navigation
+                    NavHost(navController, startDestination = "home") {
+                        composable("home") {
+                            HomeScreen(vm = gameViewModel, context = this@MainActivity, navController = navController)
+                        }
+                        composable("game") {
+                            GameScreen(vm = gameViewModel, context = this@MainActivity)
+                        }
+                    }
                 }
             }
         }
